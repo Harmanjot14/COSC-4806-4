@@ -120,4 +120,26 @@ body{
     background-color: #1e7e34;
 }
 
+/*Reminder page*/
+.reminder_container{
+    margin: 20px;
+    border-collapse: collapse;
+    width: 100%;
+    padding: 0;
+}
+.reminder_container th, .reminder_container td{
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+.reminder_container th{
+    background-color: gray;
+    font-color: black;
+    font-size: 16px;
+    font-weight: bold;
+}
+.reminder_container tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
 
