@@ -5,7 +5,7 @@
       <div class="row">
         <div>
            <h1>Reminders</h1>
-           <button>Add Reminder</button>
+           <a href = "/reminders/create"><button>Add Reminder</button></a>
            <br><br>
         </div>
       </div>
