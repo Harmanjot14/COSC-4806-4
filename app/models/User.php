@@ -49,6 +49,8 @@ Class User {
     if (password_verify($password, $rows['password'])) {
     	$_SESSION['auth'] = 1;
     	$_SESSION['username'] = ucwords($username);
+      $_SESSION['user_id'] = $rows['id'];    
+      
     	unset($_SESSION['failedAuth']);
       /*Added login_attempt good in table after succesful login*/
       $this->login_attempts($username, 'Good');
