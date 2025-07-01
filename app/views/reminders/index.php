@@ -1,5 +1,6 @@
 <?php require_once 'app/views/templates/header.php' ?>
 
+
 <div class="reminder_container">
   <div class="page-header" id="banner">
       <div class="row">
@@ -33,9 +34,26 @@
             }
           ?>
         </tbody>
-      </table>
-      
+      </table>   
+      <br><br>
   </div>
+
+  
+  <!-- Error messages -->
+    <?php if(isset($_SESSION['error'])): ?>
+      <div style="color: red; font-size: 20px; font-weight: bold;">
+        <?= $_SESSION['error'] ?>
+      </div>
+      <?php unset($_SESSION['error']); ?>
+    <?php endif; ?>
+
+  <!-- Success messages -->
+  <?php if(isset($_SESSION['success'])): ?>
+    <div style="color: green; font-size: 20px; font-weight: bold;">
+      <?= $_SESSION['success'] ?>
+    </div>
+    <?php unset($_SESSION['success']); ?>
+  <?php endif; ?>
 
   <?php require_once 'app/views/templates/footer.php' ?>
     
