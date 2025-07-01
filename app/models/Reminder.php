@@ -15,28 +15,32 @@ class Reminder{
     }
 
     /*function for update the reminder*/
-    public function update_reminder($reminder_id){
+    public function update_reminder($reminder_id, $new_subject, $new_user_id){
         $db = db_connect();
+        $statement = $db->prepare("UPDATE reminders SET subject = ?, user_id = ? WHERE id = ?");
+        $statement->execute([$new_subject, $new_user_id, $reminder_id]);
        
     }
     /*function for create the reminder*/
-    public function create_reminder($reminder_id){
+    public function create_reminder($user_id, $subject){
         $db = db_connect();
+        $statement = $db->prepare("INSERT INTO reminders (user_id, subject) VALUES (?, ?, NOW())");
+        $statement->execute([$user_id, $subject]);
 
     }
     /*function for delete the reminder*/
     public function delete_reminder($reminder_id){
         $db = db_connect();
+        $statement = $db->prepare("DELETE FROM reminders WHERE id = ?");
+        $statement->execute([$reminder_id]);
     }
 
     /*function for completed reminder*/
     public function completed_reminder($reminder_id){
         $db = db_connect();
+        $statement = $db->prepare("UPDATE reminders SET completed = 1 WHERE id = ?");
+        $statement->execute([$reminder_id]);
     }
-  
-  
-  
+    
 }
-
-
 ?>
