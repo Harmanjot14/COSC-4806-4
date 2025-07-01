@@ -22,7 +22,7 @@ if (!isset($_SESSION['auth'])) {
           <a class="navbar-brand" href="#">COSC 4806</a>
           <ul>
             <li class="nav-item"><a href="/home">Home</a></li>
-            <li class="nav-item"><a href="/about">About Me</a></li>
+            <li class="nav-item"><a href="/about">Reminders</a></li>
             <li class="nav-item">
               <a href="#" class="dropdown-toggle">Dropdown</a>
                 <ul class="dropdown-menu">
