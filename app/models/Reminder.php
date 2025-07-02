@@ -14,13 +14,22 @@ class Reminder{
         return $row;      
     }
 
-    /*function for update the reminder*/
-    public function update_reminder($reminder_id, $new_subject, $new_user_id){
+    /*function for get the reminder by id*/
+    public function get_reminder_by_id($reminder_id){
         $db = db_connect();
-        $statement = $db->prepare("UPDATE reminders SET subject = ?, user_id = ? WHERE id = ?");
-        $statement->execute([$new_subject, $new_user_id, $reminder_id]);
-       
+        $statement = $db->prepare("SELECT * FROM reminders WHERE id = ?");
+        $statement->execute([$reminder_id]);
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+        return $row;
     }
+    
+    /*function for update the reminder*/
+    public function update_reminder($reminder_id, $new_subject){
+        $db = db_connect();
+        $statement = $db->prepare("UPDATE reminders SET subject = ? WHERE id = ?");
+        $statement->execute([$new_subject, $reminder_id]);      
+    }
+    
     /*function for create the reminder*/
     public function create_reminder($user_id, $subject){
         $db = db_connect();
@@ -28,6 +37,7 @@ class Reminder{
         $statement->execute([$user_id, $subject]);
 
     }
+
     /*function for delete the reminder*/
     public function delete_reminder($reminder_id){
         $db = db_connect();
