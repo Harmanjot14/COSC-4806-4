@@ -69,6 +69,7 @@ class Reminders extends Controller {
       $reminder->completed_reminder($reminder_id);
       $_SESSION['success'] = "Reminder Completed";
       header('Location: /reminders');
+      exit;
     }
 
     
