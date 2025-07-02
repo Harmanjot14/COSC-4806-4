@@ -6,9 +6,10 @@ class Reminders extends Controller {
       $reminder = $this->model('Reminder');
       $reminders_list = $reminder->get_all_reminders();
       $this->view('reminders/index', ['reminders' => $reminders_list]);
-      die;
+    
     }
 
+    //create reminder
     public function create(){
       if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $user_id = $_SESSION['user_id'] ?? null;
@@ -32,4 +33,39 @@ class Reminders extends Controller {
       }
     }
 
+    //update reminder
+    public function update(){
+      if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $reminder_id = $_POST['id'];
+        $new_subject = $_POST['subject'];
+        $reminder = $this->model('Reminder');
+        $reminder->update_reminder($reminder_id, $new_subject);
+        $_SESSION['success'] = "Reminder updated successfully";
+        header('Location: /reminders');
+        exit;
+      }
+      else{
+        $reminder_id = $_GET['id'];
+        $reminder = $this->model('Reminder');
+        $reminder_data = $reminder->get_reminder_by_id($reminder_id);
+        $this->view('reminders/update', ['reminder' => $reminder_data]);
+      }
+    }
+
+    //delete reminder
+    public function delete(){
+      $reminder_id = $_GET['id'];
+      $reminder = $this->model('Reminder');
+      $reminder->delete_reminder($reminder_id);
+      $_SESSION['success'] = "Reminder Deleted";
+      header('Location: /reminders');
+      exit;
+    }
+
+    
+  
+   
+
+
+  
 }
