@@ -62,6 +62,15 @@ class Reminders extends Controller {
       exit;
     }
 
+   //completed reminder
+    public function completed(){
+      $reminder_id = $_GET['id'];
+      $reminder = $this->model('Reminder');
+      $reminder->completed_reminder($reminder_id);
+      $_SESSION['success'] = "Reminder Completed";
+      header('Location: /reminders');
+    }
+
     
   
    
