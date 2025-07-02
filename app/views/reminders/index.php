@@ -8,6 +8,17 @@
            <h1>Reminders</h1>
            <a href = "/reminders/create"><button>Add Reminder</button></a>
            <br><br>
+           <form action="/reminders/update" method="get" style="display: inline; margin-left: 8 px;">
+             <select name="id" required>
+               <option value="">Select Reminder ID..</option>
+               <?php foreach ($data['reminders'] as $reminder): ?>
+                 <option value="<?= $reminder['id'] ?>">ID: <?= $reminder['id'] ?></option>
+               <?php endforeach; ?>
+             </select>
+             <button type="submit">Update Reminder</button>
+           </form>
+
+           <br><br>
         </div>
       </div>
       <table>
@@ -26,11 +37,15 @@
                 echo "<td>" . $reminder['id'] . "</td>";
                 echo "<td>" . $reminder['subject'] . "</td>";
                 echo "<td>" . $reminder['created_at'] . "</td>";
-                echo "<td>
-                        <button>Update</button>
-                        <button>Delete</button>
-                        <button>Completed</button>
-                      </td>";
+                echo "<td>". "<a href='/reminders/delete?id=" . $reminder['id'] . "'><button>Delete</button></a>" ." ";
+                if(!$reminder['completed']){
+                  echo "<a href='/reminders/completed?id=" . $reminder['id'] . "'><button>Completed</button></a>" ." ";
+                }
+                else{
+                  echo "<button disabled>Completed</button>" ." ";
+                  echo $reminder['created_at'] ." ";
+                }
+                echo "</td>";
             }
           ?>
         </tbody>
